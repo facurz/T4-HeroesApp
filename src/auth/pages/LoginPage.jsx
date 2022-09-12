@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Link as RouterLink } from 'react-router-dom';
 import { AuthLayout } from '../layout/AuthLayout';
@@ -7,7 +7,29 @@ import { Google } from '@mui/icons-material';
 import { useForm } from '../../hooks/useForm';
 import { AuthContext } from '../context/AuthContext';
 
+const formData = {
+    email: '',
+    password: '',
+};
 
+const formValidations = {
+    email: [
+        [value => value.includes('@'), 'El correo debe tener un @'],
+        [
+            value =>
+                value.match(
+                    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
+                ),
+            'El correo debe tener un formato valido',
+        ],
+    ],
+    password: [
+        [
+            value => value.length >= 6,
+            'El password debe tener al menos 6 caracteres',
+        ],
+    ],
+};
 
 
 
@@ -15,13 +37,22 @@ export const LoginPage = () => {
     
     const {startGoogleSignIn, startLoginWithEmailPassword} = useContext(AuthContext);
 
-    const { email, password, onInputChange } = useForm({
-        email: '',
-        password: '',
-    });
+    const [formSubmited, setFormSubmited] = useState(false);
+
+    const {
+        email,
+        password,
+        onInputChange,
+        isFormValid,
+        passwordValid,
+        emailValid,
+    } = useForm(formData, formValidations);
+
 
     const onSubmit = event => {
         event.preventDefault();
+        setFormSubmited(true);
+        if (!isFormValid) return;
         startLoginWithEmailPassword({email, password})
         
     };
@@ -43,6 +74,8 @@ export const LoginPage = () => {
                         value={email}
                         onChange={onInputChange}
                         autoComplete='username'
+                        error={!!emailValid && formSubmited}
+                        helperText={formSubmited && emailValid}
                         
                     />
                 </Grid>
@@ -56,6 +89,8 @@ export const LoginPage = () => {
                         value={password}
                         onChange={onInputChange}
                         autoComplete='current-password'
+                        error={!!passwordValid && formSubmited}
+                        helperText={formSubmited && passwordValid}
                     />
                 </Grid>
                 <Grid container spacing={1} sx={{ mb: 2, mt: 1 }}>
@@ -64,6 +99,7 @@ export const LoginPage = () => {
                             variant='contained'
                             fullWidth
                             type='submit'
+                            disabled={!isFormValid && formSubmited}
                             
                         >
                             <Typography sx={{ ml: 1 }}>Login</Typography>

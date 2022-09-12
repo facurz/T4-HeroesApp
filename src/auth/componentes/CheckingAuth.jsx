@@ -11,7 +11,7 @@ export const CheckingAuth = () => {
     justifyContent='center'
     sx={{minHeight: '100vh', backgroundColor:'primary.main', padding: 4}}
     >
-        <CircularProgress color='warning'/>
+        <CircularProgress color='secondary'/>
         </Grid>
   )
 }

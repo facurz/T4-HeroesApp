@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Stack } from '@mui/system';
-import { blue } from '@mui/material/colors';
+import { CheckingAuth } from '../../auth/componentes/CheckingAuth';
 
 export const HeroByPublisherPage = () => {
     const { getPublishers, isLoading, reset } = useContext(HeroesContext);
@@ -36,11 +36,11 @@ export const HeroByPublisherPage = () => {
         <div className='imageBackground'>
             <div className='maskBackground'>
                 {isLoading ? (
-                    <h4>Loading...</h4>
+                    <CheckingAuth/>
                 ) : (
                     <>
                         <Stack alignItems='center'>
-                            <Box mt={4} sx={{ minWidth: 120, width: 500 }}>
+                            <Box mt={4} sx={{ minWidth: 120, width: '50%' }}>
                                 <FormControl fullWidth>
                                     <InputLabel id='demo-simple-select-label'>
                                         Select Publisher
