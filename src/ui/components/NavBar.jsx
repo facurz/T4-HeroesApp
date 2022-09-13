@@ -20,7 +20,7 @@ export const Navbar = () => {
     };
 
     return (
-        <nav className='navbar navbar-expand-sm navbar-dark bg-dark p-2 sticky-top'>
+        <nav className='navbar navbar-expand-sm navbar-dark  p-2 sticky-top' style={{ backgroundColor: '#18978F' }}>
             <Link className='navbar-brand logo' to='/'>
                 HeroesApp
             </Link>

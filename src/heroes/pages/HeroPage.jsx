@@ -46,7 +46,8 @@ export const HeroPage = () => {
                 <p>{hero.fullName}</p>
 
                 <button
-                    className='btn btn-outline-dark'
+                    style={{ backgroundColor: '#18978F' }}
+                    className='btn btn-outline-light '
                     onClick={onNavigateBack}
                 >
                     Back...
