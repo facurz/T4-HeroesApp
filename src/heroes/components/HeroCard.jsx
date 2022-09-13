@@ -18,13 +18,14 @@ const onNavigate =()=>{
 
     return (
         <div className='col animate__animated animate__fadeIn'>
-             <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+             <Card sx={{ maxWidth: 345, marginX: 'auto' }} >
+      <CardActionArea >
         <CardMedia
           component="img"
           height="140"
           image={image}
           alt={name}
+          
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

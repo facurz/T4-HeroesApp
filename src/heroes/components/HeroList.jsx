@@ -23,7 +23,7 @@ export const HeroList = ({ publisher }) => {
                         increment={increment}
                         lastPage={lastPage}
                     />
-                    <div className='row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4' >
+                    <div className='row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 d-flex justify-content-center' >
                         {heroes
                             ?.slice(
                                 (counter - 1) * maxHeroes,
